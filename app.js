@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
 
+
 bot.commands = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
