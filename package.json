@@ -1,0 +1,17 @@
+{
+  "name": "DiscordBot",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.3.1"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node deploy-commands.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.44.0"
+  }
+}
