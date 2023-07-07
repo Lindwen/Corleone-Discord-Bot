@@ -41,8 +41,7 @@ const rest = new REST().setToken(process.env.TOKEN);
       ), { body: commands },
       // or globally
       // Routes.applicationCommands(process.env.CLIENT_ID), { body: commands },
-  		
-    	);
+    );
 
     console.log(
       `Successfully reloaded ${data.length} application (/) commands.`
