@@ -13,10 +13,8 @@ module.exports = {
   async execute(interaction) {
     let intUser = interaction.options.getUser("utilisateur");
 
-    if (!interaction.options.getUser("utilisateur")) {
+    if (!intUser) {
       intUser = interaction.user;
-    } else {
-      intUser = interaction.options.getUser("utilisateur");
     }
 
     const userEmbed = new EmbedBuilder()
