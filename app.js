@@ -29,6 +29,8 @@ for (const folder of commandFolders) {
 
 bot.once(Events.ClientReady, () => {
   console.log("Ready!");
+  bot.user.setPresence({status: "dnd"});
+  bot.user.setActivity("duppliquer des 💎");
 });
 
 bot.on(Events.InteractionCreate, async (interaction) => {
