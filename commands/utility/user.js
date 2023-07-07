@@ -20,18 +20,20 @@ module.exports = {
     const userEmbed = new EmbedBuilder()
       .setColor(0x0099ff)
       .setAuthor({
-        name: intUser.username,
+        name: `${intUser.username} ( ${intUser.id} )`,
         iconURL: intUser.avatarURL(),
-        url: intUser.avatarURL(),
       })
       .setThumbnail(intUser.avatarURL())
-      .addFields(
-        { name: "Nom d'utilisateur :", value: intUser.username },
-        { name: "ID :", value: intUser.id },
-        { name: "Création du compte :", value: `${intUser.createdAt}` }
+      .setDescription(
+        `\`Nom complet :\` ${intUser.username}#${intUser.discriminator}
+        \`Nickname :\` ${intUser.nickname}
+        \`ID :\` ${intUser.id}
+        \`Création du compte :\` ${intUser.createdAt}
+        \`Rejoint le :\` ${intUser.joinedTimestamp}`
       )
       .setTimestamp();
 
+      console.log(intUser)
     await interaction.reply({ embeds: [userEmbed] });
   },
 };
