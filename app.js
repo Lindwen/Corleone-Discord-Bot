@@ -1,6 +1,6 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const { Client, Events, GatewayIntentBits, Collection } = require("discord.js");
+const { Client, GatewayIntentBits, Collection } = require("discord.js");
 require("dotenv").config();
 
 const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -27,48 +27,19 @@ for (const folder of commandFolders) {
   }
 }
 
-bot.once(Events.ClientReady, () => {
-  console.log("Ready!");
-  bot.user.setPresence({status: "dnd"});
-  bot.user.setActivity("🐱");
-});
+const eventsPath = path.join(__dirname, "events");
+const eventFiles = fs
+  .readdirSync(eventsPath)
+  .filter((file) => file.endsWith(".js"));
 
-bot.on('ready', async() => {
-  function get_random (list) {
-    return list[Math.floor((Math.random()*list.length))];
+for (const file of eventFiles) {
+  const filePath = path.join(eventsPath, file);
+  const event = require(filePath);
+  if (event.once) {
+    bot.once(event.name, (...args) => event.execute(...args));
+  } else {
+    bot.on(event.name, (...args) => event.execute(...args));
   }
-  task = () => {
-    const status = ['dupliquer des 💎', '1+1=27 🧠'];
-    let randomStatus = get_random(status);
-    bot.user.setActivity(randomStatus);
-  }
-  task();
-	setInterval(task, 60000);
-});
-
-bot.on(Events.InteractionCreate, async (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-
-  const command = bot.commands.get(interaction.commandName);
-
-  if (!command) return;
-
-  try {
-    await command.execute(interaction);
-  } catch (error) {
-    console.error(error);
-    if (interaction.replied || interaction.deferred) {
-      await interaction.followUp({
-        content: "There was an error while executing this command!",
-        ephemeral: true,
-      });
-    } else {
-      await interaction.reply({
-        content: "There was an error while executing this command!",
-        ephemeral: true,
-      });
-    }
-  }
-});
+}
 
 bot.login(process.env.TOKEN);
