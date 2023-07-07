@@ -4,9 +4,15 @@
 
 ## Installation
 
-Créer un fichier .env en se basant sur le fichier .env.dist
+Cloner le projet
 
 ```bash
-yarn install
-yarn start
+git clone https://github.com/Lindwen/DiscordBot.git
+```
+
+Créer un fichier .env en se basant sur le fichier .env.dist
+
+Lancer le projet
+```bash
+docker compose up -d
 ```
