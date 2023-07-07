@@ -41,14 +41,7 @@ const rest = new REST().setToken(process.env.TOKEN);
       ), { body: commands },
       // or globally
       // Routes.applicationCommands(process.env.CLIENT_ID), { body: commands },
-
-	  // delete commands from a guild
-	  //Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: [] },
-
-	  // delete commands globally
-	  //Routes.applicationCommands(process.env.CLIENT_ID), { body: [] },
-
-      		
+  		
     	);
 
     console.log(
