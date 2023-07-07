@@ -14,5 +14,5 @@ Créer un fichier .env en se basant sur le fichier .env.dist
 
 Lancer le projet
 ```bash
-docker compose up -d
+docker compose up -d --build
 ```
