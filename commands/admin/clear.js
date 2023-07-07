@@ -5,7 +5,7 @@ module.exports = {
 		.setName('clear')
 		.setDescription('Supprime les messages dans le channel')
         .addIntegerOption(option => option.setName('nombre').setDescription('Nombre de messages à supprimer').setRequired(true))
-        .setDefaultMemberPermissions(PermissionFlagsBits.MANAGE_MESSAGES),
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 	async execute(interaction) {
 		deleteCount = interaction.options.getInteger('nombre');
         if (!deleteCount || deleteCount < 1 || deleteCount > 100)
