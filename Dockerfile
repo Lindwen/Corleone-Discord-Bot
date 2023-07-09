@@ -6,6 +6,6 @@ COPY . .
 
 RUN yarn set version berry
 
-RUN yarn install --immutable
+RUN yarn install
 
 CMD [ "yarn", "start" ]
