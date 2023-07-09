@@ -6,7 +6,7 @@ COPY package*.json ./
 
 RUN yarn set version berry
 
-RUN yarn install
+RUN yarn install --immutable
 
 COPY . .
 
