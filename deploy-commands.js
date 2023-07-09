@@ -32,7 +32,7 @@ const rest = new REST().setToken(config.token);
   try {
     console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
-    for (const guildId of Object.values(config.guilds)) {
+    for (const guildId of config.guilds) {
       const data = await rest.put(
         Routes.applicationGuildCommands(config.client_id, guildId),
         { body: commands }
