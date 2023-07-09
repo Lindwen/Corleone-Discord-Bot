@@ -1,4 +1,5 @@
 const { Events } = require("discord.js");
+const config = require("../config.json");
 
 module.exports = {
   name: Events.ClientReady,
@@ -12,8 +13,7 @@ module.exports = {
       return list[Math.floor(Math.random() * list.length)];
     }
     task = () => {
-      const status = ["dupliquer des 💎", "1+1=27 🧠"];
-      let randomStatus = get_random(status);
+      let randomStatus = get_random(config.status);
       bot.user.setActivity(randomStatus);
     };
     task();
