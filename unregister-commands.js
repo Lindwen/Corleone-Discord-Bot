@@ -1,27 +1,35 @@
 const { REST, Routes } = require("discord.js");
-require("dotenv").config();
+const config = require("./config.json");
 
-const rest = new REST().setToken(process.env.TOKEN);
+const rest = new REST().setToken(config.token);
 
+// remove commands to some guilds
 (async () => {
   try {
-    const data = await rest.put(
-      // delete commands from a guild
-      Routes.applicationGuildCommands(
-        process.env.CLIENT_ID,
-        process.env.GUILD_ID
-      ),
-      { body: [] },
+    for (const guildId of config.guilds) {
+      const data = await rest.put(
+        Routes.applicationGuildCommands(config.client_id, guildId),
+        { body: [] }
+      );
 
-      // delete commands globally
-      Routes.applicationCommands(process.env.CLIENT_ID),
-      { body: [] }
-    );
-
-    console.log(
-      `Successfully reloaded ${data.length} application (/) commands.`
-    );
+      console.log(`Successfully removed application (/) commands in guild ${guildId}.`);
+    }
   } catch (error) {
     console.error(error);
   }
 })();
+
+
+// remove commands globally
+// (async () => {
+//   try {
+//     const data = await rest.put(
+//       Routes.applicationCommands(config.client_id),
+//       { body: [] }
+//     );
+
+//     console.log(`Successfully removed ${data.length} application (/) commands globally.`);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// })();

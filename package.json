@@ -10,8 +10,7 @@
   },
   "scripts": {
     "start": "node deploy-commands.js && node app.js",
-    "unregister": "node unregister-commands.js",
-    "deploy": "node deploy-commands.js"
+    "unregister": "node unregister-commands.js"
   },
   "devDependencies": {
     "eslint": "^8.44.0"
