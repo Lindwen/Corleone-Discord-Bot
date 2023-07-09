@@ -3,8 +3,7 @@ const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('servers-list')
-        .setDescription('Liste les serveurs où le bot est présent')
-        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
+        .setDescription('[Owner Only] Liste les serveurs où le bot est présent'),
     async execute(interaction) {
         if (interaction.user.id === '199599741779050497') {
             const guilds = interaction.client.guilds.cache.map(guild => guild.name);
