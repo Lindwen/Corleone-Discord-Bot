@@ -1,7 +1,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { Client, GatewayIntentBits, Collection } = require("discord.js");
-require("dotenv").config();
+const config = require('./config.json');
 
 const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -42,4 +42,4 @@ for (const file of eventFiles) {
   }
 }
 
-bot.login(process.env.TOKEN);
+bot.login(config.token);
