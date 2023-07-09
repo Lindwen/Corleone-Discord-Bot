@@ -1,0 +1,9 @@
+{
+    "token": "YOUR_TOKEN_HERE",
+    "CLIENT_ID": "YOUR_CLIENT_ID_HERE",
+    "owner_id": "YOUR_ID_HERE",
+    "guilds_id": {
+        "1": "YOUR_GUILD_ID_HERE",
+        "2": "YOUR_SECOND_GUILD_ID_HERE"
+    }
+}

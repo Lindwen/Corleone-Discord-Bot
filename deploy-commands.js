@@ -1,5 +1,5 @@
 const { REST, Routes } = require("discord.js");
-require("dotenv").config();
+const config = require("./config.json");
 const fs = require("node:fs");
 const path = require("node:path");
 
@@ -25,28 +25,39 @@ for (const folder of commandFolders) {
   }
 }
 
-const rest = new REST().setToken(process.env.TOKEN);
+const rest = new REST().setToken(config.token);
 
+// add commands to some guilds
 (async () => {
   try {
-    console.log(
-      `Started refreshing ${commands.length} application (/) commands.`
-    );
+    console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
-    const data = await rest.put(
-      // add commands to a guild
-      Routes.applicationGuildCommands(
-        process.env.CLIENT_ID,
-        process.env.GUILD_ID
-      ), { body: commands },
-      // or globally
-      // Routes.applicationCommands(process.env.CLIENT_ID), { body: commands },
-    );
+    for (const guildId of Object.values(config.guilds_id)) {
+      const data = await rest.put(
+        Routes.applicationGuildCommands(config.CLIENT_ID, guildId),
+        { body: commands }
+      );
 
-    console.log(
-      `Successfully reloaded ${data.length} application (/) commands.`
-    );
+      console.log(`Successfully reloaded ${data.length} application (/) commands in guild ${guildId}.`);
+    }
   } catch (error) {
     console.error(error);
   }
 })();
+
+// add commands globally
+// (async () => {
+//   try {
+//     console.log(`Started refreshing ${commands.length} application (/) commands.`);
+
+//     const data = await rest.put(
+//       Routes.applicationCommands(config.CLIENT_ID),
+//       { body: commands }
+//     );
+
+//     console.log(`Successfully reloaded ${data.length} application (/) commands globally.`);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+// )();
