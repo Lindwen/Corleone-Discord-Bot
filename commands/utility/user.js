@@ -33,7 +33,6 @@ module.exports = {
       )
       .setTimestamp();
 
-      console.log(intUser)
     await interaction.reply({ embeds: [userEmbed] });
   },
 };

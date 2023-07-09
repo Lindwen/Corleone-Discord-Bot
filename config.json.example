@@ -1,9 +1,9 @@
 {
-    "token": "YOUR_TOKEN_HERE",
-    "CLIENT_ID": "YOUR_CLIENT_ID_HERE",
+    "token": "YOUR_BOT_TOKEN_HERE",
+    "client_id": "YOUR_CLIENT_ID_HERE",
     "owner_id": "YOUR_ID_HERE",
-    "guilds_id": {
-        "1": "YOUR_GUILD_ID_HERE",
-        "2": "YOUR_SECOND_GUILD_ID_HERE"
+    "guilds": {
+        "YOUR_FIRST_GUILD_NAME_HERE": "YOUR_FIRST_GUILD_ID_HERE",
+        "YOUR_SECOND_GUILD_NAME_HERE": "YOUR_SECOND_GUILD_ID_HERE"
     }
 }
