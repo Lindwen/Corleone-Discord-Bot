@@ -11,25 +11,28 @@ module.exports = {
         .setRequired(false)
     ),
   async execute(interaction) {
-    let intUser = interaction.options.getUser("utilisateur");
+    let user = interaction.options.getUser("utilisateur");
 
-    if (!intUser) {
-      intUser = interaction.user;
+    if (!user) {
+      user = interaction.user;
     }
+
+    let member = await interaction.guild.members.fetch(user);
 
     const userEmbed = new EmbedBuilder()
       .setColor(0x0099ff)
       .setAuthor({
-        name: `${intUser.username} ( ${intUser.id} )`,
-        iconURL: intUser.avatarURL(),
+        name: `${user.username} ( ${user.id} )`,
+        iconURL: user.avatarURL(),
       })
-      .setThumbnail(intUser.avatarURL())
+      .setThumbnail(user.avatarURL())
       .setDescription(
-        `\`Nom complet :\` ${intUser.username}#${intUser.discriminator}
-        \`Nickname :\` ${intUser.nickname}
-        \`ID :\` ${intUser.id}
-        \`Création du compte :\` ${intUser.createdAt}
-        \`Rejoint le :\` ${intUser.joinedTimestamp}`
+        `\`Nom complet :\` ${user.username}#${user.discriminator}
+        \`Nickname :\` ${user.nickname || "Aucun"}
+        \`ID :\` ${user.id}
+        \`Bot :\` ${member.bot ? "✅" : "❌"}
+        \`Créé le :\` ${user.createdAt}
+        \`Rejoint le :\` ${member.joinedAt}`
       )
       .setTimestamp();
 
