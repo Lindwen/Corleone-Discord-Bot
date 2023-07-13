@@ -12,8 +12,8 @@ module.exports = {
         .setDescription("Catégories d'emote")
         .setRequired(true)
         .setChoices(
-          {name: "Câlin", value: "hug"},
-          {name: "Bisous", value: "kiss"}
+          { name: "Câlin", value: "hug" },
+          { name: "Bisous", value: "kiss" }
         )
     )
     .addUserOption((option) =>
@@ -43,7 +43,7 @@ module.exports = {
       "https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif",
     ];
 
-    
+
     if (interaction.options.getString("categories") === "hug") {
       const random = Math.floor(Math.random() * randomhug.length);
       const user = interaction.options.getUser("utilisateur");

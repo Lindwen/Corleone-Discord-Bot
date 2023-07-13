@@ -1,7 +1,0 @@
-{
-    "token": "YOUR_BOT_TOKEN_HERE",
-    "client_id": "YOUR_CLIENT_ID_HERE",
-    "owner_id": "YOUR_ID_HERE",
-    "guilds": ["YOUR_FIRST_GUILD_ID_HERE", "YOUR_SECOND_GUILD_ID_HERE"],
-    "status": ["dupliquer des 💎", "1+1=27 🧠", "chercher un ami", "feur ?"]
-}

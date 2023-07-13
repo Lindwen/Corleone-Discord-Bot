@@ -8,10 +8,10 @@ module.exports = {
     async execute(interaction) {
         if (interaction.user.id === config.owner_id) {
             const guilds = interaction.client.guilds.cache.map(guild => guild.name);
-            await interaction.reply({content: `Je suis présent sur ${guilds.length} serveurs :\n🔹 ${guilds.join(`\n🔹 `)}`, ephemeral: true});
+            await interaction.reply({ content: `Je suis présent sur ${guilds.length} serveurs :\n🔹 ${guilds.join(`\n🔹 `)}`, ephemeral: true });
         }
         else {
-            await interaction.reply({content: 'Vous n\'avez pas la permission d\'utiliser cette commande', ephemeral: true });
+            await interaction.reply({ content: 'Vous n\'avez pas la permission d\'utiliser cette commande', ephemeral: true });
         }
     },
 };
