@@ -18,7 +18,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd /home/${{ secrets.USERNAME }}/Corleone-Discord-Bot
+            cd /home/ubuntu/Corleone-Discord-Bot
             docker compose down
             cd ..
             rm -r Corleone-Discord-Bot 
