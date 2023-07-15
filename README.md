@@ -2,6 +2,8 @@
  
 ## Description
 
+Bot discord en javascript
+
 ## Installation
 
 Cloner le projet
