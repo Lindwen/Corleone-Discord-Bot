@@ -1,0 +1,26 @@
+name: deploy to server
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /home/${{ secrets.USERNAME }}/Corleone-Discord-Bot
+            docker compose down
+            cd ..
+            rm -r Corleone-Discord-Bot 
+            git clone https://github.com/Lindwen/Corleone-Discord-Bot.git
+            cd Corleone-Discord-Bot
+            docker compose up -d --build
