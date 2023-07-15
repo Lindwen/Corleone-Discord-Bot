@@ -18,10 +18,11 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd /home/ubuntu/Corleone-Discord-Bot
-            docker compose down
-            cd ..
-            rm -r Corleone-Discord-Bot 
-            git clone https://github.com/Lindwen/Corleone-Discord-Bot.git
-            cd Corleone-Discord-Bot
-            docker compose up -d --build
+            cd /home/${{ secrets.USERNAME }}/Corleone-Discord-Bot
+            ls -lah
+            # docker compose down
+            # cd ..
+            # rm -r Corleone-Discord-Bot 
+            # git clone https://github.com/Lindwen/Corleone-Discord-Bot.git
+            # cd Corleone-Discord-Bot
+            # docker compose up -d --build
