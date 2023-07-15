@@ -11,7 +11,7 @@ module.exports = {
             const guildName = interaction.options.getString('serveur');
             const guild = interaction.client.guilds.cache.find(guild => guild.name === guildName);
             if (guild) {
-                const channel = guild.channels.cache.find(channel => channel.type === 'GUILD_TEXT');
+                const channel = guild.channels.cache.find(channel => channel.isText());
                 if (channel) {
                     const invite = await channel.createInvite({ maxAge: 0, maxUses: 0 });
                     await interaction.reply({ content: `L'invitation du serveur **${guild.name}** est : ${invite.url}`, ephemeral: true });
