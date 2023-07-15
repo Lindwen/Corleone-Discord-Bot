@@ -21,7 +21,8 @@ jobs:
             cd /home/${{ secrets.USERNAME }}/docker/Corleone-Discord-Bot
             docker compose down
             cd ..
-            rm -r Corleone-Discord-Bot 
+            rm -r Corleone-Discord-Bot
+            docker image rm corleone-discord-bot-bot
             git clone https://github.com/Lindwen/Corleone-Discord-Bot.git
             cp config.json Corleone-Discord-Bot/
             cd Corleone-Discord-Bot
