@@ -6,3 +6,5 @@ services:
     build: .
     container_name: bot-discord
     restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
