@@ -8,7 +8,7 @@ module.exports = {
   async execute(interaction) {
     Gamedig.query({
       type: "minecraft",
-      host: "mc.lindwen.fr",
+      host: "corleone.lindwen.fr",
     })
       .then((state) => {
         let playerList = "";
