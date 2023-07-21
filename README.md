@@ -4,8 +4,6 @@
     <img src="https://www.vectorlogo.zone/logos/js_discord/js_discord-icon.svg" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Corleone-Discord-Bot</h3>
-
   <p align="center">
     Un bot discord multi-fonctions en JavaScript
     <br/>
