@@ -4,11 +4,37 @@ const Gamedig = require("gamedig");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("gamestatus")
-    .setDescription("Répond avec les informations du serveur."),
+    .setDescription("Répond avec les informations du serveur.")
+    // ajouter 2 options : type et server
+    .addStringOption((option) =>
+      option
+        .setName("type")
+        .setDescription("Le type de serveur.")
+        .setRequired(true)
+        .setChoices(
+          { name: "Minecraft", value: "minecraft" },
+          { name: "Garry's Mod", value: "garrysmod" }
+        ))
+    .addStringOption((option) =>
+      option
+        .setName("server")
+        .setDescription("Le serveur à ping.")
+        .setRequired(true)
+    )
+    .addIntegerOption((option) =>
+      option
+        .setName("port")
+        .setDescription("Le port du serveur.")
+        .setRequired(false)
+    ),
   async execute(interaction) {
+    let type = interaction.options.getString("type");
+    let server = interaction.options.getString("server");
+    let port = interaction.options.getInteger("port");
     Gamedig.query({
-      type: "minecraft",
-      host: "corleone.lindwen.fr",
+      type: type,
+      host: server,
+      port: port,
     })
       .then((state) => {
         let playerList = "";
@@ -24,12 +50,17 @@ module.exports = {
           playerList = playerList + "\n 🔹 " + state.players[i].name;
         }
 
+        if (playerList.length > 1024) {
+          playerList = playerList.substring(0, 1020) + "\n...";
+        }
+
         const gameEmbed = new EmbedBuilder()
           .setTitle("🟢 " + state.name)
           .setColor("#5ad65c")
           .setDescription("━━━━━━━━━━━━━━━━━━━━━━━━\n\u200B")
           .addFields(
             { name: "Ping : `" + state.ping + " ms`", value: "\n" },
+            { name: "Map : `" + state.map + "`", value: "\n" },
             {
               name:
                 "Joueurs en ligne : `" +
@@ -38,13 +69,11 @@ module.exports = {
                 state.maxplayers +
                 "`",
               value: playerList,
-            }
+            },
+            { name: "Connectez-vous avec :", value: "`" + state.connect + "`"},
           )
-          .setFooter({ text: "mc.lindwen.fr | 1.18.2" })
           .setTimestamp()
-          .setThumbnail(
-            "https://media.forgecdn.net/avatars/thumbnails/841/179/64/64/638235662713791359.png"
-          );
+          .setThumbnail(state.raw.icon);
 
         interaction.reply({ embeds: [gameEmbed] });
       })
@@ -54,11 +83,7 @@ module.exports = {
           .setTitle("🔴 Serveur offline")
           .setColor("#d65a5a")
           .setDescription("━━━━━━━━━━━━━━━━━━━━━━━━\n\u200B")
-          .setFooter({ text: "mc.lindwen.fr | 1.18.2" })
           .setTimestamp()
-          .setThumbnail(
-            "https://media.forgecdn.net/avatars/thumbnails/841/179/64/64/638235662713791359.png"
-          );
         interaction.reply({ embeds: [gameEmbed] });
       });
   },

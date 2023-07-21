@@ -13,6 +13,6 @@ module.exports = {
         const fetched = await interaction.channel.messages.fetch({ limit: deleteCount });
         interaction.channel.bulkDelete(fetched)
             .catch(error => interaction.reply({ content: `Impossible de supprimer les messages à cause de: ${error}`, ephemeral: true }));
-        interaction.reply({ content: `J'ai supprimé **${deleteCount}** messages !`, ephemeral: true });
+        await interaction.reply({ content: `J'ai supprimé **${deleteCount}** messages !`, ephemeral: true });
     },
 };
