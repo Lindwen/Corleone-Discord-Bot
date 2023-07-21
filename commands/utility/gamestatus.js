@@ -54,26 +54,38 @@ module.exports = {
           playerList = playerList.substring(0, 1020) + "\n...";
         }
 
+        let connect = state.connect;
+        if (type == "garrysmod") {
+          connect = "steam://connect/" + connect;
+        }
+
         const gameEmbed = new EmbedBuilder()
           .setTitle("🟢 " + state.name)
           .setColor("#5ad65c")
           .setDescription("━━━━━━━━━━━━━━━━━━━━━━━━\n\u200B")
           .addFields(
-            { name: "Ping : `" + state.ping + " ms`", value: "\n" },
-            { name: "Map : `" + state.map + "`", value: "\n" },
             {
-              name:
-                "Joueurs en ligne : `" +
-                state.players.length +
-                "/" +
-                state.maxplayers +
-                "`",
+              name: "🏓 ┃ Ping :",
+              value: " 🔹 " + state.ping + " ms \n\u200B"
+            },
+            {
+              name: "🌍 ┃ Map :",
+              value: " 🔹 " + state.map + " \n\u200B"
+            },
+            {
+              name: "👥 ┃ Joueurs en ligne : `" + state.players.length + "/" + state.maxplayers + "`",
               value: playerList,
             },
-            { name: "Connectez-vous avec :", value: "`" + state.connect + "`"},
+            {
+              name: "\u200B",
+              value: "━━━━━━━━━━━━━━━━━━━━━━━━"
+            },
+            {
+              name: "📡 ┃ Rejoindre le serveur :",
+              value: "**" + connect + "**"
+            },
           )
           .setTimestamp()
-          .setThumbnail(state.raw.icon);
 
         interaction.reply({ embeds: [gameEmbed] });
       })
