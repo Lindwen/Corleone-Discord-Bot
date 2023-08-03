@@ -1,5 +1,4 @@
-const { Events } = require("discord.js");
-const config = require("../config.json");
+const { Events, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: Events.ClientReady,
