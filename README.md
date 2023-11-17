@@ -62,7 +62,7 @@ npm install --global yarn
 
 ```sh
 git clone https://github.com/Lindwen/Corleone-Discord-Bot.git
-cd Corleone-Discord-Bo
+cd Corleone-Discord-Bot
 ```
 
 3. Installer les paquets YARN
